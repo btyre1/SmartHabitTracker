@@ -1,3 +1,3 @@
+# Hide virtual environment and sensitive files
 /venv
-.env
-serviceAccountKey.json
+secrets/

@@ -1,3 +1,7 @@
+# List of Python packages required for this project
+# Tested with Python 3.13.1
+# Use a virtual environment to avoid conflicts
+# Install with: pip install -r requirements.txt
 anyio==4.11.0
 CacheControl==0.14.3
 cachetools==6.2.1
