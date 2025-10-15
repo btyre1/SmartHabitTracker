@@ -1,3 +1,4 @@
 # Hide virtual environment and sensitive files
 /venv
 secrets/
+*.pyc
