@@ -36,10 +36,16 @@ def add_habit(user_id, habit_name, target_per_week):
 def print_habits(user_id):
     print("\nYour Habits:")
     habits = db.collection("habits").where("user_id", "==", user_id).stream()
+    found = False
+
     for doc in habits:
+        found = True
         data = doc.to_dict()
-        print(f"""ID: {doc.id}\nHabit: {data['habit_name']}\nTarget per week: {data['target_per_week']}\nCompleted: {data['completed_times']}\nLast updated: {data['last_updated']}""")
+        print(f"""\nID: {doc.id}\nHabit: {data['habit_name']}\nTarget per week: {data['target_per_week']}\nCompleted: {data['completed_times']}\nLast updated: {data['last_updated']}""")
         print("----------------------------\n")
+
+    if not found:
+        print("No habits found yet. Add one to get started!")
 
 def update_habit(habit_id, updates):
     """Update a habit by its document ID."""
