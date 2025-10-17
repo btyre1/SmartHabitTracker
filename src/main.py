@@ -1,7 +1,7 @@
 from firestore_service import add_habit, print_habits, update_habit, delete_habit, log_completion
 
 def main():
-    user_id = input("Enter your user ID: ")
+    user_id = input("\nEnter your user ID: ")
 
     while True:
         print("\nSmart Habit Tracker")
@@ -12,7 +12,7 @@ def main():
         print("5. Mark habit as complete")
         print("6. Exit")
 
-        choice = input("Choose an option: ")
+        choice = input("\nChoose an option: ")
 
         if choice == "1":
             name = input("Habit name: ")

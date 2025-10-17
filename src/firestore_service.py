@@ -30,7 +30,7 @@ def add_habit(user_id, habit_name, target_per_week):
         "completed_times": 0,
         "last_updated": datetime.now()
     })
-    print(f"✅ Added habit: {habit_name}")
+    print(f"\nSuccessfully added habit: {habit_name}")
 
 
 def print_habits(user_id):
@@ -39,18 +39,18 @@ def print_habits(user_id):
     for doc in habits:
         data = doc.to_dict()
         print(f"""ID: {doc.id}\nHabit: {data['habit_name']}\nTarget per week: {data['target_per_week']}\nCompleted: {data['completed_times']}\nLast updated: {data['last_updated']}""")
-        print("----------------------------")
+        print("----------------------------\n")
 
 def update_habit(habit_id, updates):
     """Update a habit by its document ID."""
     db.collection("habits").document(habit_id).update(updates)
-    print("Habit updated successfully.")
+    print("\nHabit updated successfully.")
 
 
 def delete_habit(habit_id):
     """Delete a habit by its document ID."""
     db.collection("habits").document(habit_id).delete()
-    print("Habit deleted successfully.")
+    print("\nHabit deleted successfully.")
 
 def log_completion(habit_id):
     """Increment completed_times and update timestamp."""
@@ -63,6 +63,6 @@ def log_completion(habit_id):
             "completed_times": new_count,
             "last_updated": datetime.now()
         })
-        print(f"Habit progress updated! Total completions: {new_count}")
+        print(f"\nHabit progress updated! Total completions: {new_count}")
     else:
         print("Habit not found.")
