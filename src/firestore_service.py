@@ -25,7 +25,9 @@ def add_habit(user_id, habit_name, target_per_week):
     habit_ref.set({
         "user_id": user_id,
         "habit_name": habit_name,
-        "target_per_week": target_per_week
+        "target_per_week": target_per_week,
+        "completed_times": 0,
+        "last_updated": datetime.utcnow()
     })
     print(f"✅ Added habit: {habit_name}")
 
@@ -42,11 +44,11 @@ def print_habits(user_id):
 def update_habit(habit_id, updates):
     """Update a habit by its document ID."""
     db.collection("habits").document(habit_id).update(updates)
-    print("✏️ Habit updated successfully.")
+    print("Habit updated successfully.")
 
 
 def delete_habit(habit_id):
     """Delete a habit by its document ID."""
     db.collection("habits").document(habit_id).delete()
-    print("🗑️ Habit deleted successfully.")
+    print("Habit deleted successfully.")
 
