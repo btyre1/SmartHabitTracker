@@ -34,12 +34,14 @@ def add_habit(user_id, habit_name, target_per_week):
 
 
 def print_habits(user_id):
-    """Retrieve and display all habits for a user."""
-    print("\n📋 Your Habits:")
+    print("\nYour Habits:")
     habits = db.collection("habits").where("user_id", "==", user_id).stream()
     for doc in habits:
         data = doc.to_dict()
-        print(f"ID: {doc.id} | {data['habit_name']} - {data['target_per_week']} times/week")
+        print(f"""ID: {doc.id}\nHabit: {data['habit_name']}\nTarget per week: {data['target_per_week']}\nCompleted: {data['completed_times']}\nLast updated: {data['last_updated']}""")
+        print("----------------------------")
+
+
 
 
 def update_habit(habit_id, updates):
