@@ -2,6 +2,7 @@ import os
 from dotenv import load_dotenv
 import firebase_admin
 from firebase_admin import credentials, firestore
+from datetime import datetime
 
 # Load environment variables from the .env file
 # (The .env file lives in the secrets/ folder)
@@ -27,7 +28,7 @@ def add_habit(user_id, habit_name, target_per_week):
         "habit_name": habit_name,
         "target_per_week": target_per_week,
         "completed_times": 0,
-        "last_updated": datetime.utcnow()
+        "last_updated": datetime.now()
     })
     print(f"✅ Added habit: {habit_name}")
 
