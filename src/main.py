@@ -1,4 +1,4 @@
-from firestore_service import add_habit, print_habits, update_habit, delete_habit
+from firestore_service import add_habit, print_habits, update_habit, delete_habit, log_completion
 
 def main():
     user_id = input("Enter your user ID: ")
@@ -9,7 +9,8 @@ def main():
         print("2. View habits")
         print("3. Update habit")
         print("4. Delete habit")
-        print("5. Exit")
+        print("5. Mark habit as complete")
+        print("6. Exit")
 
         choice = input("Choose an option: ")
 
@@ -34,6 +35,10 @@ def main():
             delete_habit(doc_id)
 
         elif choice == "5":
+            doc_id = input("Enter habit ID to mark complete: ")
+            log_completion(doc_id)
+
+        elif choice == "6":
             print("Goodbye!")
             break
         else:
