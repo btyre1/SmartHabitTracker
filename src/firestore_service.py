@@ -28,7 +28,7 @@ def add_habit(user_id, habit_name, target_per_week):
         "habit_name": habit_name,
         "target_per_week": target_per_week,
         "completed_times": 0,
-        "last_updated": datetime.now()
+        "last_updated": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     })
     print(f"\nSuccessfully added habit: {habit_name}")
 
@@ -67,7 +67,7 @@ def log_completion(habit_id):
         new_count = data.get("completed_times", 0) + 1
         doc_ref.update({
             "completed_times": new_count,
-            "last_updated": datetime.now()
+            "last_updated": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         })
         print(f"\nHabit progress updated! Total completions: {new_count}")
     else:
