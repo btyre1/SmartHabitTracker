@@ -13,7 +13,8 @@ config = {
     "storageBucket": os.getenv("FIREBASE_STORAGE_BUCKET"),
     "messagingSenderId": os.getenv("FIREBASE_MESSAGING_SENDER_ID"),
     "appId": os.getenv("FIREBASE_APP_ID"),
-    "measurementId": os.getenv("FIREBASE_MEASUREMENT_ID")
+    "measurementId": os.getenv("FIREBASE_MEASUREMENT_ID"),
+    "databaseURL": ""
 }
 
 firebase = pyrebase.initialize_app(config)
@@ -48,7 +49,7 @@ def sign_in(email, password):
 
 def sign_out():
     """Sign out the current user."""
-    
+
     current_user["uid"] = None
     print("\n👋 Signed out.")
 
