@@ -4,8 +4,7 @@ import firebase_admin
 from firebase_admin import credentials, firestore
 from datetime import datetime
 
-# Load environment variables from the .env file
-# (The .env file lives in the secrets/ folder)
+# Load .env file
 dotenv_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "secrets", ".env")
 load_dotenv(dotenv_path)
 
@@ -22,18 +21,21 @@ db = firestore.client()
 
 def add_habit(user_id, habit_name, target_per_week):
     """Add a new habit to Firestore."""
-    habit_ref = db.collection("habits").document()  # auto-generated ID
-    habit_ref.set({
+
+    db.collection("habits").add({
         "user_id": user_id,
         "habit_name": habit_name,
         "target_per_week": target_per_week,
         "completed_times": 0,
-        "last_updated": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        "last_updated": datetime.now().strftime("%b %d, %Y %I:%M %p")
     })
-    print(f"\nSuccessfully added habit: {habit_name}")
+
+    print(f"\nHabit '{habit_name}' added!")
 
 
 def print_habits(user_id):
+    """Show all habits for the user."""
+
     print("\nYour Habits:")
     habits = db.collection("habits").where("user_id", "==", user_id).stream()
     found = False
@@ -49,25 +51,29 @@ def print_habits(user_id):
 
 def update_habit(habit_id, updates):
     """Update a habit by its document ID."""
+    
     db.collection("habits").document(habit_id).update(updates)
     print("\nHabit updated successfully.")
 
 
 def delete_habit(habit_id):
     """Delete a habit by its document ID."""
+
     db.collection("habits").document(habit_id).delete()
     print("\nHabit deleted successfully.")
 
 def log_completion(habit_id):
-    """Increment completed_times and update timestamp."""
+    """Mark a habit as complete."""
+
     doc_ref = db.collection("habits").document(habit_id)
     doc = doc_ref.get()
+
     if doc.exists:
         data = doc.to_dict()
         new_count = data.get("completed_times", 0) + 1
         doc_ref.update({
             "completed_times": new_count,
-            "last_updated": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            "last_updated": datetime.now().strftime("%b %d, %Y %I:%M %p")
         })
         print(f"\nHabit progress updated! Total completions: {new_count}")
     else:
