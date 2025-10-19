@@ -4,9 +4,7 @@ This project is a Smart Habit Tracker that helps users create, track, and manage
 
 The software lets users sign up and log in securely, add new habits, view their habits, update them, delete them, and mark habits as completed. All habit data is stored in a Google Firestore cloud database, which allows the information to persist even if the program is closed. The project demonstrates CRUD operations (Create, Read, Update, Delete) in a real-world context, along with basic authentication and session management.
 
-{Provide a link to your YouTube demonstration. It should be a 4-5 minute demo of the software running, a walkthrough of the code, and a view of the cloud database.}
-
-You can watch a demo of my software here: [Software Demo Video](http://youtube.link.goes.here)
+You can watch a demo of my software here: [Software Demo Video](https://youtu.be/sgitE24qk3I)
 
 # Cloud Database
 
